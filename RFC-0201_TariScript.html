@@ -1,0 +1,807 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>RFC-0201: TariScript - The Tari Network: RFC library</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="The Tari network RFC library and documentation">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+        <!-- MathJax -->
+        <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true
+            }
+          });
+        </script>
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">var path_to_root = "";</script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = 'light';
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <img src="theme/images/tari-splash.png" class="tlu">
+
+            <ol class="chapter"><li class="chapter-item expanded affix "><a href="about.html">About the Tari RFC documents</a></li><li class="chapter-item expanded "><a href="RFC-0001_overview.html"><strong aria-hidden="true">1.</strong> RFC-0001: An overview of the Tari network</a></li><li class="chapter-item expanded "><a href="RFC-0010_CodeStructure.html"><strong aria-hidden="true">2.</strong> RFC-0010: Tari code structure and organisation</a></li><li class="chapter-item expanded "><a href="RFC-0100_BaseLayer.html"><strong aria-hidden="true">3.</strong> RFC-0100: The Tari Base Layer</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="RFC-0110_BaseNodes.html"><strong aria-hidden="true">3.1.</strong> RFC-0110: Base nodes</a></li><li class="chapter-item expanded "><a href="RFC-0111_BaseNodeArchitecture.html"><strong aria-hidden="true">3.2.</strong> RFC-0111: Base node architecture</a></li><li class="chapter-item expanded "><a href="RFC-0120_Consensus.html"><strong aria-hidden="true">3.3.</strong> RFC-0120: Consensus rules</a></li><li class="chapter-item expanded "><a href="RFC-0131_Mining.html"><strong aria-hidden="true">3.4.</strong> RFC-0131: Mining</a></li><li class="chapter-item expanded "><a href="RFC-0140_Syncing_and_seeding.html"><strong aria-hidden="true">3.5.</strong> RFC-0140: Sync and Seeding</a></li><li class="chapter-item expanded "><a href="RFC-0150_Wallets.html"><strong aria-hidden="true">3.6.</strong> RFC-0150: Wallets</a></li><li class="chapter-item expanded "><a href="RFC-0151_TransactionProtocol.html"><strong aria-hidden="true">3.7.</strong> RFC-0151: Transaction protocol</a></li><li class="chapter-item expanded "><a href="RFC-0152_EmojiId.html"><strong aria-hidden="true">3.8.</strong> RFC-0152: Emoji ID</a></li><li class="chapter-item expanded "><a href="RFC-0170_NetworkCommunicationProtocol.html"><strong aria-hidden="true">3.9.</strong> RFC-0170: Network Communication Protocol</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="RFC-0171_MessageSerialisation.html"><strong aria-hidden="true">3.9.1.</strong> RFC-0171: Message Serialisation</a></li><li class="chapter-item expanded "><a href="RFC-0172_PeerToPeerMessagingProtocol.html"><strong aria-hidden="true">3.9.2.</strong> RFC-0172: Peer to Peer Messaging Protocol</a></li></ol></li><li class="chapter-item expanded "><a href="RFC-0190_Mempool.html"><strong aria-hidden="true">3.10.</strong> RFC-0190: Mempool</a></li><li class="chapter-item expanded "><a href="BaseLayerExtensions.html"><strong aria-hidden="true">3.11.</strong> Tari-specific extensions to Mimblewimble</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="RFC-0201_TariScript.html" class="active"><strong aria-hidden="true">3.11.1.</strong> RFC-0201: TariScript</a></li><li class="chapter-item expanded "><a href="RFC-0202_TariScriptOpcodes.html"><strong aria-hidden="true">3.11.2.</strong> RFC-0202: TariScript Opcodes</a></li><li class="chapter-item expanded "><a href="RFC-0230_HTLC.html"><strong aria-hidden="true">3.11.3.</strong> RFC-0230: Hash time locked contracts</a></li><li class="chapter-item expanded "><a href="RFC-0322_VNRegistration.html"><strong aria-hidden="true">3.11.4.</strong> RFC-0322: Validator Node Registration</a></li><li class="chapter-item expanded "><a href="RFC-0341_AssetRegistration.html"><strong aria-hidden="true">3.11.5.</strong> RFC-0341: Asset registration</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="RFC-0300_DAN.html"><strong aria-hidden="true">4.</strong> RFC-0300: The Digital Assets Network</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="RFC-0301_NamespaceRegistration.html"><strong aria-hidden="true">4.1.</strong> RFC-0301: Namespace Registration</a></li><li class="chapter-item expanded "><a href="RFC-0302_ValidatorNodes.html"><strong aria-hidden="true">4.2.</strong> RFC-0302: Validator Nodes</a></li><li class="chapter-item expanded "><a href="RFC-0304_VNCommittees.html"><strong aria-hidden="true">4.3.</strong> RFC-0304: Validator Node committee selection</a></li><li class="chapter-item expanded "><a href="AssetManagement.html"><strong aria-hidden="true">4.4.</strong> Asset Management</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="RFC-0311_AssetTemplates.html"><strong aria-hidden="true">4.4.1.</strong> RFC-0311: Digital Asset templates</a></li><li class="chapter-item expanded "><a href="RFC-0345_AssetLifeCycle.html"><strong aria-hidden="true">4.4.2.</strong> RFC-0345: Asset Life cycle</a></li></ol></li><li class="chapter-item expanded "><a href="RFC-0340_VNConsensusOverview.html"><strong aria-hidden="true">4.5.</strong> RFC-0340: Validator Node Consensus</a></li></ol></li><li class="chapter-item expanded "><a href="RFC-0500_PaymentChannels.html"><strong aria-hidden="true">5.</strong> RFC-0500: Tari payment channels</a></li><li class="chapter-item expanded "><a href="RFC-1000_TariUseCases.html"><strong aria-hidden="true">6.</strong> RFC-1000: Tari Use Cases</a></li><li class="chapter-item expanded "><a href="deprecated.html"><strong aria-hidden="true">7.</strong> Deprecated RFCs</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="RFC-0130_Mining.html"><strong aria-hidden="true">7.1.</strong> RFC-0130: Mining</a></li></ol></li><li class="chapter-item expanded "><a href="Glossary.html"><strong aria-hidden="true">8.</strong> Glossary</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title"><img src="theme/images/tari-horizontal-logo.png"/> </h1>
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="rfc-0201tariscript"><a class="header" href="#rfc-0201tariscript">RFC-0201/TariScript</a></h1>
+<h2 id="tariscript"><a class="header" href="#tariscript">TariScript</a></h2>
+<p><img src="theme/images/status-draft.svg" alt="status: draft" /></p>
+<p><strong>Maintainer(s)</strong>: <a href="https://github.com/CjS77">Cayle Sharrock</a></p>
+<h1 id="licence"><a class="header" href="#licence">Licence</a></h1>
+<p><a href="https://opensource.org/licenses/BSD-3-Clause">The 3-Clause BSD Licence</a>.</p>
+<p>Copyright 2020 The Tari Development Community</p>
+<p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
+following conditions are met:</p>
+<ol>
+<li>Redistributions of this document must retain the above copyright notice, this list of conditions and the following
+disclaimer.</li>
+<li>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following
+disclaimer in the documentation and/or other materials provided with the distribution.</li>
+<li>Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products
+derived from this software without specific prior written permission.</li>
+</ol>
+<p>THIS DOCUMENT IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;, AND ANY EXPRESS OR IMPLIED WARRANTIES,
+INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+<h2 id="language"><a class="header" href="#language">Language</a></h2>
+<p>The keywords &quot;MUST&quot;, &quot;MUST NOT&quot;, &quot;REQUIRED&quot;, &quot;SHALL&quot;, &quot;SHALL NOT&quot;, &quot;SHOULD&quot;, &quot;SHOULD NOT&quot;, &quot;RECOMMENDED&quot;, &quot;NOT
+RECOMMENDED&quot;, &quot;MAY&quot; and &quot;OPTIONAL&quot; in this document are to be interpreted as described in
+<a href="https://tools.ietf.org/html/bcp14">BCP 14</a> (covering RFC2119 and RFC8174) when, and only when, they appear in all
+capitals, as shown here.</p>
+<h2 id="disclaimer"><a class="header" href="#disclaimer">Disclaimer</a></h2>
+<p>This document and its content are intended for information purposes only and may be subject to change or update without
+notice.</p>
+<p>This document may include preliminary concepts that may or may not be in the process of being developed by the Tari
+community. The release of this document is intended solely for review and discussion by the community of the
+technological merits of the potential system outlined herein.</p>
+<h2 id="goals"><a class="header" href="#goals">Goals</a></h2>
+<p>This Request for Comment (RFC) presents a proposal for introducing Tari Script into the Tari base layer protocol. Tari
+Script aims to provide a general mechanism for enabling further extensions such as side chains, the DAN, one-sided
+payments and atomic swaps.</p>
+<h2 id="related-requests-for-comment"><a class="header" href="#related-requests-for-comment">Related Requests for Comment</a></h2>
+<ul>
+<li><a href="BaseLayerExtensions.html">RFC-0200: Base Layer Extensions</a></li>
+<li><a href="RFC-0202_TariScriptOpcodes.html">RFC-0202: Tari Script Opcodes</a></li>
+<li><a href="RFC-0300_DAN.html">RFC-0300: The Tari Digital Assets Network</a></li>
+</ul>
+<p>$$
+\newcommand{\script}{\alpha} % utxo script
+\newcommand{\scripthash}{ \sigma }
+\newcommand{\input}{ \theta }
+\newcommand{\HU}{\mathrm{U}} % UTXO hash
+\newcommand{\cat}{\Vert}
+\newcommand{\so}{\gamma} % script offset
+\newcommand{\rpc}{\beta} % Range proof commitment
+\newcommand{\hash}[1]{\mathrm{H}\bigl({#1}\bigr)}
+$$</p>
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
+<p>It is hopefully clear to anyone reading these RFCs that the ambitions of the Tari project extend beyond a
+Mimblewimble-clone-coin.
+It should also be fairly clear that vanilla Mimblewimble does not have the feature set to provide functionality such as:</p>
+<ul>
+<li>One-sided payments</li>
+<li>Multiparty side-chain peg outs and peg-ins</li>
+<li>Generalised smart contracts</li>
+</ul>
+<p>Extensions to Mimblewimble have been proposed for most of these features, for example, David Burkett's one-sided payment
+proposal for LiteCoin (<a href="https://github.com/DavidBurkett/lips/blob/master/lip-0004.mediawiki">LIP-004</a>), this project's <a href="RFC-0230_HTLC.html">HTLC RFC</a> and the pegging proposals for the
+Clacks side-chain.</p>
+<p>Some smart contract features are possible, or partly possible in vanilla Mimblewimble using <a href="https://tlu.tarilabs.com/cryptography/scriptless-scripts/introduction-to-scriptless-scripts.html">Scriptless script</a>, such as</p>
+<ul>
+<li>Atomic swaps </li>
+<li>Hash time-locked contracts</li>
+</ul>
+<p>This RFC makes the case that if Tari were to implement a scripting language similar to Bitcoin script, then all of these
+use cases will collapse and can be achieved under a single set of (relatively minor) modifications and additions to the
+current Tari and Mimblewimble protocol.</p>
+<h2 id="scripting-on-mimblewimble"><a class="header" href="#scripting-on-mimblewimble">Scripting on Mimblewimble</a></h2>
+<p>To the author's knowledge, none of existing Mimblewimble projects have employed a scripting language, nor are there 
+ambitions to do so. </p>
+<p><a href="https://github.com/mimblewimble/grin">Grin</a> styles itself as a &quot;Minimal implementation of the Mimblewimble protocol&quot;,
+so one might infer that this status is unlikely to change soon.</p>
+<p>Beam <a href="https://github.com/BeamMW/beam/wiki/Beam-Smart-Contracts">recently announced</a> the inclusion of a smart contract
+protocol, which allows users to execute arbitrary code (shaders) in a sandboxed Beam VM and have the results of that 
+code interact with transactions.</p>
+<p><a href="https://github.com/mwcproject/mwc-node/blob/master/doc/roadmap.md">Mimblewimble coin</a> is a fork of Grin and &quot;considers
+the protocol ossified&quot;.</p>
+<p>Litecoin is in the process of adding Mimblewimble as a
+<a href="https://github.com/litecoin-project/lips/blob/master/lip-0003.mediawiki">side-chain</a>. As of this writing, there appear
+to be no plans to include general scripting into the protocol.</p>
+<h3 id="scriptless-scripts"><a class="header" href="#scriptless-scripts">Scriptless scripts</a></h3>
+<p><a href="https://tlu.tarilabs.com/cryptography/scriptless-scripts/introduction-to-scriptless-scripts.html">Scriptless script</a> is a wonderfully elegant technology and inclusion of Tari script does not preclude the use of
+Scriptless script in Tari. However, scriptless scripts have some disadvantages:</p>
+<ul>
+<li>They are often difficult to reason about, with the result that the development of features based on scriptless scripts
+is essentially in the hands of a very select group of cryptographers and developers.</li>
+<li>The use case set is impressive considering that the &quot;scripts&quot; are essentially signature wrangling, but is still 
+somewhat limited.</li>
+<li>Every feature must be written and implemented separately using the specific and specialised protocol designed for that
+feature. That is, it cannot be used as a dynamic scripting framework on a running blockchain.</li>
+</ul>
+<h2 id="tari-script---a-brief-motivation"><a class="header" href="#tari-script---a-brief-motivation">Tari script - a brief motivation</a></h2>
+<p>The essential idea of Tari script is as follows:</p>
+<p>Given a standard Tari UTXO, we add <em>additional restrictions</em> on whether that UTXO can be included as a valid input in a
+transaction.</p>
+<p>As long as those conditions are suitably committed to, are not malleable throughout the existence of the UTXO, and one
+can prove that the script came from the UTXO owner, then these conditions are not that different to the 
+requirement of having range proofs attached to UTXOs, which require that the value of Tari commitments is non-negative.</p>
+<p>This argument is independent of the nature of the additional restrictions. Specifically, if these restrictions are
+manifested as a script that provides additional constraints over whether a UTXO may be spent, the same arguments apply.</p>
+<p>This means that in a very hand-wavy sort of way, there ought to be no reason that Tari Script is not workable.</p>
+<p>Note that range proofs can be discarded after a UTXO is spent. This entails that the global security guarantees of
+Mimblewimble are not that every transaction in history was valid from an inflation perspective, but that the net effect
+of all transactions lead to zero spurious inflation. This sounds worse than it is, since locally, every individual
+transaction is checked for validity at the time of inclusion in the blockchain.</p>
+<p>If it somehow happened that two illegal transactions made it into the blockchain (perhaps due to a bug), and the two
+cancelled each other out such that the global coin supply was still correct, one would never know this when doing a
+chain synchronisation in pruned mode.</p>
+<p>But if there was a steady inflation bug due to invalid range proofs making it into the blockchain, a pruned mode sync
+would still detect that <em>something</em> was awry, because the global coin supply balance acts as another check.</p>
+<p>With Tari script, once the script has been pruned away, and then there is a re-org to an earlier point on the chain,
+then there's no way to ensure that the script was honoured unless you run an archival node.</p>
+<p>This is broadly in keeping with the Mimblewimble security guarantees that, in pruned-mode synchronisation, individual 
+transactions are not necessarily verified during chain synchronisation.</p>
+<p>However, the guarantee that no additional coins are created or destroyed remains intact.</p>
+<p>Put another way, the blockchain relies on the network <em>at the time</em> to enforce the Tari script spending rules. 
+This means that the scheme may be susceptible to certain <em>horizon attacks</em>.</p>
+<p>Incidentally, a single honest archival node would be able to detect any fraud on the same chain and provide a simple proof
+that a transaction did not honour the redeem script.</p>
+<h3 id="additional-requirements"><a class="header" href="#additional-requirements">Additional requirements</a></h3>
+<p>The assumptions that broadly equate scripting with range proofs in the above argument are:</p>
+<ul>
+<li>The script (hash) must be committed to the blockchain.</li>
+<li>The script must not be malleable in any way without invalidating the transaction. This restriction extends to all 
+participants, including the UTXO owner.</li>
+<li>We must be able to prove that the UTXO originator provides the script hash and no-one else.</li>
+<li>The scripts and their redeeming inputs must be stored on the block chain. In particular, the input data must not be
+malleable.</li>
+</ul>
+<p>The next section discusses the specific proposals for achieving these requirements.</p>
+<h2 id="protocol-modifications"><a class="header" href="#protocol-modifications">Protocol modifications</a></h2>
+<p>At a high level, Tari script works as follows:</p>
+<ul>
+<li>A commitment to the spending script is recorded in the transaction UTXO.</li>
+<li>UTXOs also define a new, <em>offset public key</em>.</li>
+<li>After the script is executed, the execution stack must contain exactly one value that will be interpreted as a public key.
+One can prove ownership of a UTXO by demonstrating knowledge of both the commitment blinding factor, <em>and</em> the script key.</li>
+<li>The script key signs the script input data.</li>
+<li>The offset and script keys are used in conjunction to create a <em>script offset</em>, which used in the consensus balance to prevent a
+number of attacks.</li>
+</ul>
+<h3 id="utxo-data-commitments"><a class="header" href="#utxo-data-commitments">UTXO data commitments</a></h3>
+<p>The script, as well as other UTXO metadata, such as the output features are committed to in the range proof. As we will
+describe later, the notion of a script offset is introduced to prevent cut-through and forces the preservation of these
+commitments until they are recorded into the blockchain.</p>
+<p>There are several changes to the protocol data structures that must be made to allow this scheme to work. </p>
+<p>The first is a relatively minor adjustment to the transaction output definition.
+The second is the inclusion of script input data and an additional public key in the transaction input field.
+Third is the way we calculate and validate the range proof.</p>
+<h3 id="transaction-output-changes"><a class="header" href="#transaction-output-changes">Transaction output changes</a></h3>
+<p>The current definition of a Tari UTXO is:</p>
+<pre><code class="language-rust ignore">pub struct TransactionOutput {
+    /// Options for an output's structure or use
+    features: OutputFeatures,
+    /// The homomorphic commitment representing the output amount
+    commitment: Commitment,
+    /// A proof that the commitment is in the right range
+    proof: RangeProof,
+}
+</code></pre>
+<p><em>Note:</em> Currently, the output features are actually malleable. TariScript fixes this.</p>
+<p>Under TariScript, this definition changes to accommodate the script and the offset public keys:</p>
+<pre><code class="language-rust ignore">pub struct TransactionOutput {
+    /// Options for an output's structure or use
+    features: OutputFeatures,
+    /// The homomorphic commitment representing the output amount
+    commitment: Commitment,
+    /// A proof that the commitment is in the right range
+    proof: RangeProof,
+    /// The serialised script
+    script_hash: Vec&lt;u8&gt;,
+    /// The offset pubkey, K_O
+    offset_pub_key: PublicKey
+}
+</code></pre>
+<p>We now introduce some <a href="#notation">Notation</a>.</p>
+<p>The commitment definition is unchanged:</p>
+<p>$$
+C_i = v_i \cdot H  + k_i \cdot G
+$$</p>
+<p>We update \( \rpc_i \), the range proof commitment, to be the hash of the script hash, output features and
+offset public key as follows:</p>
+<p>$$
+\rpc_i = \hash{\scripthash_i \cat \mathrm{F_i} \cat K_{Oi}}
+$$</p>
+<p>Wallets now generate the range proof with</p>
+<p>$$ k_i + \rpc_i $$</p>
+<p>rather than just \( k_i \).</p>
+<p>Note that:</p>
+<ul>
+<li>The UTXO has a positive value <code>v</code> like any normal UTXO. </li>
+<li>The script and the output features can no longer be changed by the miner or any other party. Once mined, the owner can
+also no longer change the script or output features without invalidating the range proof.</li>
+<li>We don't provide the complete script on the output, just the script hash.</li>
+</ul>
+<h3 id="transaction-input-changes"><a class="header" href="#transaction-input-changes">Transaction input changes</a></h3>
+<p>The current definition of an input is</p>
+<pre><code class="language-rust ignore">pub struct TransactionInput {
+    /// The features of the output being spent. We will check maturity for all outputs.
+    pub features: OutputFeatures,
+    /// The commitment referencing the output being spent.
+    pub commitment: Commitment,
+}
+</code></pre>
+<p>In standard Mimblewimble, an input is the same as an output <em>sans</em> range proof. The range proof doesn't need to be checked
+again when spending inputs, so it is dropped. </p>
+<p>The updated input definition is:</p>
+<pre><code class="language-rust ignore">pub struct TransactionInput {
+    /// Options for an output's structure or use
+    features: OutputFeatures,
+    /// The homomorphic commitment representing the output amount
+    commitment: Commitment,
+    
+    /// The serialised script
+    script: Vec&lt;u8&gt;,
+    /// The script input data, if any
+    input_data: Vec&lt;u8&gt;
+    /// The block height that the UTXO was mined 
+    height : u64
+    /// A signature with k_s, signing the script, input data, and mined height
+    script_signature: Signature,
+    /// The offset pubkey, K_O
+    offset_pubkey: PublicKey
+}
+</code></pre>
+<p>The input data to the script is signed with resolving script public key \(K_s \), which proves that the spender provides
+the input to the script.</p>
+<p>The <code>height</code> field is the height this UTXO was mined at. This is to stop <a href="#replay-attacks">Replay attacks</a>.</p>
+<p>The <code>script_signature</code> is a Schnorr signature. It signs the script, the script input, and the height the UTXO was originally mined:</p>
+<p>$$
+s_{Si} = r_{Si} + \hash{ R_{Si} \cat \alpha_i \cat \input_i \cat h_i} k_{Si}
+$$ </p>
+<h3 id="consensus-changes"><a class="header" href="#consensus-changes">Consensus changes</a></h3>
+<p>The Mimblewimble balance for blocks and transactions stays the same.</p>
+<p>The range proof commits all the values comprising the transaction output. So now instead of verifying the range proof
+using the standard output commitment, \( C_i \), we use the modified commitment,</p>
+<p>$$ \hat{C_i} = v_i\cdot H  + \bigl( k_i + \rpc_i \bigr) \cdot G  $$</p>
+<p>We can then verify the range proof. If the range proof is valid, we know that the value v, is positive and that none of
+the values have been changed.</p>
+<p>The new offset pubkey, \(K_O \),  and the script public key, \(K_S \), are combined to create a script offset,
+\( \so \).</p>
+<p>\( \so\) is calculated and verified as part of every block and transaction validation. This is calculated as follows:</p>
+<p>$$
+\so = \sum_i\mathrm{k_{Si}} - \sum_j(\mathrm{k_{Oj}  \HU_j}) \; \text{for each input}, i,\, \text{and each output}, j
+$$</p>
+<p>where \(  \HU_i \)  is the serialized hash of the entire output <em>sans</em> the range proof.</p>
+<p>Usually, the spenders will know and provide the  \( k_{Oi} \), and the new UTXO owners (receivers) will provide the
+\( k_{Sj} \), but this is not necessarily always the case (see the <a href="#examples">Examples</a>).</p>
+<p>For every block and/or transactions, an accompanying \( \so \) needs to be provided.</p>
+<p>Currently, Tari, like vanilla Mimblewimble, has a transaction offset in each transaction instance, and an aggregate offset
+stored in the header of the block. To accommodate the <em>script offset</em> we need to add a <code>script_offset</code> to transactions,
+and an aggregated <code>total_script_offset</code> to the header.</p>
+<p>We modify the transactions to be:</p>
+<pre><code class="language-rust ignore">pub struct Transaction {
+    
+    ...
+    
+    /// A scalar offset that links outputs and inputs to prevent cut-through, enforcing the correct application of
+    /// the output script.
+    pub script_offset: BlindingFactor,
+}
+</code></pre>
+<p>And Blockheaders need to be modified to:</p>
+<pre><code class="language-rust ignore">pub struct BlockHeader {
+    
+    ...
+    
+    /// Sum of script offsets for all kernels in this block.
+    pub total_script_offset: BlindingFactor,
+}
+</code></pre>
+<p>One important distinction to make is that the coinbase utxo does not count towards the <em>script offset</em>. This is because the coinbase UTXO already has special rules accompanying it and it has no input. Thus we cannot generate a \( \so \) for a coinbase transaction.
+The coinbase can allow any script and \( k_{O} \) as long as the range proof is validly constructed for \( \hat{C_i} \) and it does not break any of the rules in <a href="RFC-0120_Consensus.html">RFC 120</a>.</p>
+<p>In addition to the changes given above, there are consensus rule changes for transaction and block validation.</p>
+<p>For every valid block or transaction,</p>
+<ol>
+<li>Validate range proofs against \( \hat{C_i} \) rather than \( C_i \).</li>
+<li>Check that the script signature, \( s_{Si} \) is valid for every input.</li>
+<li>The script offset is valid for every block and transaction.</li>
+<li>The script executes successfully using the given input script data.</li>
+<li>The result of the script is a valid public key, \( K_S \).</li>
+<li>The script signature, \( s_S \), is a valid signature for \( K_S \) and message \( \hash{ R_S \cat \script \cat \input \cat h } \).</li>
+</ol>
+<h2 id="examples"><a class="header" href="#examples">Examples</a></h2>
+<p>Let's cover a few examples to illustrate the new scheme and provide justification for the additional requirements and
+validation steps.</p>
+<h3 id="standard-mw-transaction"><a class="header" href="#standard-mw-transaction">Standard MW transaction</a></h3>
+<p>For this use case we have Alice who sends Bob some Tari.
+Bob's wallet is  online and is able to countersign the transaction.</p>
+<p>Alice creates a new transaction spending \( C_a \) to a new output \( C_b \) (ignoring fees for now).</p>
+<p>To spend \( C_a \), she provides</p>
+<ul>
+<li>A script, \( \alpha_a \) such that the script hash, \( \scripthash_a = \hash{ \alpha_a }\) matches the blockchain
+record for the UTXO containing \( C_a \).</li>
+<li>The script input, \( \input_a \).</li>
+<li>The height, \( h \), that the UTXO matching \( C_a \) was mined.</li>
+<li>A valid signature, \( (s_{Sa}, R_{Sa}) \) proving that she knows the private key, \( k_{Sa} \), corresponding to
+\( K_{Sa} \), the public key left on the stack after executing \( \script_a \) with \( \input_a \).</li>
+<li>An offset public key, \( k_{Ob} \).</li>
+</ul>
+<p>Since Bob will be countersigning the transaction, Alice can essentially construct a traditional MW output for Bob:</p>
+<p>She creates a new proto-output:</p>
+<ul>
+<li>with the value <em>v</em>; Bob will provide the blinding factor (as per vanilla Mimblewimble),</li>
+<li>her public nonce, \( R_a \) for the excess signature (also as per vanilla Mimblewimble),</li>
+<li>and the hash of a <code>NO_OP</code> script (See <a href="RFC-0202_TariScriptOpcodes.html">RFC 202</a>).</li>
+</ul>
+<p>Alice sends Bob this proto-UTXO, along with her signature nonce, as per the standard Mimblewimble protocol. However, she
+also provides Bob with \( K_{Ob} \), the script offset public key.</p>
+<p>Bob can then complete his side of the transaction by completing the output:</p>
+<ul>
+<li>
+<p>Calculating the commitment, \( C_b = k_b \cdot G + v \cdot H \),</p>
+</li>
+<li>
+<p>Choosing a private script key, \( k_{Sb} \),</p>
+</li>
+<li>
+<p>Creating a range proof for \( \hat{C}_b = (k_b + \rpc_b) \cdot G + v \cdot H \), with</p>
+<p>$$
+\rpc_b = \hash{\scripthash_b \cat F_b \cat K_{Ob} }
+$$</p>
+</li>
+</ul>
+<p>Bob then signs the kernel excess as usual:
+$$
+s_b = r_b + k_b \hash{R_a + R_b \cat f \cat m }
+$$</p>
+<p>Bob returns the UTXO and partial signature along with his nonce, \( R_b \), back to Alice.</p>
+<p>Alice will then complete the transaction by calculating the script offset, \( \so\):
+$$
+\so  = k_{Sa} - k_{Ob} \HU_b
+$$</p>
+<p>She can then construct and broadcast the transaction to the network.</p>
+<h4 id="transaction-validation"><a class="header" href="#transaction-validation">Transaction validation</a></h4>
+<p>Base nodes validate the transaction as follows:</p>
+<ul>
+<li>They check that the usual Mimblewimble balance holds by summing inputs and outputs and validating against the excess
+signature. This check does not change. Nor do the other validation rules, such as confirming that all inputs are in
+the UTXO set etc.</li>
+<li>The range proof of Bob's output is validated with \( \hat{C}_b \) rather than \( C_b \),</li>
+<li>The script signature on Alice's input is validated against the script, input and mining height,</li>
+<li>The script hash must match the hash of the provided input script,</li>
+<li>The input script must execute successfully using the provided input data; and the script result must be a valid public key,
+\( K_{Sa} \).</li>
+<li>The script offset is verified by checking that the balance
+$$
+\so \cdot{G} = K_{Sa} - \HU_b K_{Ob}
+$$
+holds.</li>
+</ul>
+<p>When the transaction is included in a block, the total offset for the block is validated, in an analogous fashion to how
+the excess offset is used.</p>
+<p>Finally, when Bob spends this output, he will use \( K_{Sb} \) as his script input and sign it with his private key
+\( k_{Sb} \). He will choose a new \( K_{Oc} \) to give to the recipient, and he will construct the script offset,
+\( \so_b \) as follows:</p>
+<p>$$
+\so_b = k_{Sb} - k_{Oc} \HU_b
+$$</p>
+<h3 id="one-sided-payment"><a class="header" href="#one-sided-payment">One sided payment</a></h3>
+<p>In this example, Alice pays Bob, who is not available to countersign the transaction, so Alice initiates a one-sided payment,</p>
+<p>$$
+C_a \Rightarrow  C_b
+$$</p>
+<p>Once again, transaction fees are ignored to simplify the illustration.</p>
+<p>Alice owns \( C_a \) and provides the required script to spend the UTXO as was described in the previous cases.</p>
+<p>Alice needs a public key from Bob, \( K_{Sb} \) to complete the one-sided transaction. This key can be obtained
+out-of-band, and might typically be Bob's wallet public key on the Tari network.</p>
+<p>Bob requires the value \( v_b \) and blinding factor \( k_b \) to claim his payment, but he needs to be able to claim it without asking Alice for them.</p>
+<p>This information can be obtained by using Diffie-Hellman and Bulletproof rewinding. If the blinding factor \( k_b \) was calculated with Diffie-Hellman using the offset public keypair, (\( k_{Ob} \),\( K_{Ob} \)) as sender keypair and
+the keypair, (\( k_{Sb} \),\( K_{Sb} \)) as the receiver keypair, the blinding factor \( k_b \) can be securely calculated without communication.</p>
+<p>Alice uses Bob's public key to create a shared secret, \( k_b \) for the output commitment, \( C_b \), using
+Diffie-Hellman key exchange.</p>
+<p>Alice calculates \( k_b \) as
+$$
+k_b = k_{Ob} * {K_Sb}
+$$</p>
+<p>Next Alice next uses Bulletproof rewinding to encrypt the value \( v_b \) into the the Bulletproof for the commitment \( C_b \). For this she uses (\( k_{rewind} =  Hash(k_{b}) \) as the rewind_key and (\( k_{blinding} =  Hash(Hash(k_{b})) \) as the blinding key.
+*Note, deriving the keys here should be secure, but should be confirmed before mainnet.</p>
+<p>Alice knows the script-redeeming private key \( k_{Sa}\) for the transaction input.</p>
+<p>Alice will create the entire transaction including, generating a new offset keypair and calculating the script offset,</p>
+<p>$$
+\so = k_{Sa} - k_{Ob} \cdot \HU_b
+$$</p>
+<p>For the script hash, she provides the hash of a script that locks the output to Bob's public key, <code>PushPubkey(K_Sb)</code>.
+This script will only resolve successfully if the spender can provide a valid signature as input that demonstrates proof
+of knowledge of \( k_{Sb} \) which only Bob knows.</p>
+<p>Any base node can now verify that the transaction is complete, verify the signature on the script, and verify the script
+offset.</p>
+<p>For Bob to claim his commitment he will scan the blockchain for a known script hash because he knowns that the script will be <code>PushPubkey(K_Sb)</code> he can scan for that hash. In this case, the script hash is analogous to an address in Bitcoin or Monero. Bob's wallet can scan the blockchain
+looking for hashes that he would know how to resolve. For all outputs that he discovers this way, Bob would need to know
+who the sender is so that he can derive the shared secret.</p>
+<p>When Bob's wallet spots a known hash he requires he requires the blinding factor, \( k_b \) and the value \( v_b \). First he uses Diffie-Hellman to calculate \( k_b \). </p>
+<p>Bob calculates \( k_b \) as
+$$
+k_b = K_{Ob} * {k_Sb}
+$$</p>
+<p>Next Bob's wallet calculates \( k_{rewind} \), using \( k_{rewind} =  Hash(k_{b})\) and (\( k_{blinding} =  Hash(Hash(k_{b})) \), using those to rewind the Bulletproof to get the value \( v_b \). </p>
+<p>Because Bob's wallet already knowns \( k_Sb \), he now knows all the values required to spend the commitment \( C_b \)</p>
+<p>For Bob's part, when he discovers one-sided payments to himself, he should spend them to new outputs using a traditional
+transaction to thwart any potential horizon attacks in the future.</p>
+<p>To summarise, the information required for one-sided transactions is as follows:</p>
+<table><thead><tr><th align="left">Transaction input</th><th align="left">Symbols</th><th align="left">Knowledge</th></tr></thead><tbody>
+<tr><td align="left">commitment</td><td align="left">\( C_a = k_a \cdot G + v \cdot H \)</td><td align="left">Alice knows spend key and value</td></tr>
+<tr><td align="left">features</td><td align="left">\( F_a \)</td><td align="left">Public</td></tr>
+<tr><td align="left">script</td><td align="left">\( \alpha_a \)</td><td align="left">Public, can verify that \( \hash{\alpha_a} = \scripthash_a \)</td></tr>
+<tr><td align="left">script input</td><td align="left">\( \input_a \)</td><td align="left">Public</td></tr>
+<tr><td align="left">height</td><td align="left">\( h_a \)</td><td align="left">Public</td></tr>
+<tr><td align="left">script signature</td><td align="left">\( s_{Sa}, R_{Sa} \)</td><td align="left">Alice knows \( k_{Sa},\, r_{Sa} \)</td></tr>
+<tr><td align="left">offset public key</td><td align="left">\( K_{Oa} \)</td><td align="left">Not used in this transaction</td></tr>
+</tbody></table>
+<table><thead><tr><th align="left">Transaction output</th><th align="left">Symbols</th><th align="left">Knowledge</th></tr></thead><tbody>
+<tr><td align="left">commitment</td><td align="left">\( C_b = k_b \cdot G + v \cdot H \)</td><td align="left">Alice and Bob know the spend key and value</td></tr>
+<tr><td align="left">features</td><td align="left">\( F_b \)</td><td align="left">Public</td></tr>
+<tr><td align="left">script hash</td><td align="left">\( \scripthash_b \)</td><td align="left">Script is effectively public. Only Bob knows the correct script input.</td></tr>
+<tr><td align="left">range proof</td><td align="left"></td><td align="left">Alice and Bob know opening parameters</td></tr>
+<tr><td align="left">offset public key</td><td align="left">\( K_{Ob} \)</td><td align="left">Alice knows \( k_{Ob} \)</td></tr>
+</tbody></table>
+<h3 id="htlc-like-script"><a class="header" href="#htlc-like-script">HTLC-like script</a></h3>
+<p>In this use case we have a script that controls where it can be spent. The script is out of scope for this example, but
+has applies the following rules:</p>
+<ul>
+<li>Alice can spend the UTXO unilaterally after block <em>n</em>, <strong>or</strong></li>
+<li>Alice and Bob can spend it together.</li>
+</ul>
+<p>This would be typically what a lightning-type channel requires.</p>
+<p>Alice owns the commitment \( C_a \).
+She and Bob work together to create \( C_s\).
+But we don't yet know who can spend the newly created \( C_s\) and under what conditions this will be.</p>
+<p>$$
+C_a \Rightarrow  C_s \Rightarrow  C_x
+$$</p>
+<p>Alice owns \( C_a\), so she knows the blinding factor \( k_a\) and the correct input for the script's spending conditions.
+Alice also generates the offset keypair, \( (k_{Os}, K_{Os} )\).</p>
+<p>Now Alice and Bob proceed with the standard transaction flow.</p>
+<p>Alice and Bob have to ensure that \( K_{Os}\) is inside of the commitment \( C_s\).
+Alice will fill in the script with her \( k_{Sa}\) to unlock the commitment \( C_a\).
+Because Alice owns \( C_a\) she needs to construct \( \so\) with:</p>
+<p>$$
+\so = k_{Sa} - k_{Ob} \cdot \HU_s
+$$</p>
+<p>The blinding factor, \( k_s\) can be generated using a Diffie-Hellman construction.
+The commitment \( C_s\) needs to be constructed with the script the Bob agrees on. Until it is mined, Alice could modify
+the script via double-spend and thus Bob must wait until the transaction is confirmed before accepting the conditions of
+the smart contract between Alice and himself.</p>
+<p>Once the UTXO is mined, both Alice and Bob possess all the knowledge required to spend the \( C_s \) UTXO. It's only
+the conditions of the script that will discriminate between the two.</p>
+<p>The spending case of either Alice or Bob claiming the commitment \( C_s\) follows the same flow described in the previous examples, with
+the spender proving knowledge of \( k_{Ss}\) and &quot;unlocking&quot; the spending script.</p>
+<p>The case of Alice and Bob spending \( C_s \) together to a new multiparty commitment requires some elaboration.</p>
+<p>Assume that Alice and Bob want to spend  \( C_s \) co-operatively.
+This involves the script being executed in such a way that the resulting public key on the stack is the sum of Alice and
+Bob's individual script keys, \( k_{SsA} \) and \( k_{SaB} \).</p>
+<p>The script input needs to be signed by this aggregate key, and so Alice and Bob must each supply a partial signature following
+the usual Schnorr aggregate mechanics.</p>
+<p>In an analogous fashion, Alice and Bob also generate an aggregate \( k_{Ox}\) from their own \( k_{Ox}\)s.</p>
+<p>To be specific, Alice calculates her portion from</p>
+<p>$$
+\so_A = k_{SsA} - k_{OxA} \cdot \HU_x
+$$</p>
+<p>Bob will construct his part of the \( \so\) with:
+$$
+\so_B = k_{SsB} - k_{OxB} \cdot \HU_x
+$$</p>
+<p>And the aggregate \( \so\) is then:</p>
+<p>$$
+\so = \so_A + \so_B
+$$</p>
+<p>Notice that in this case, both \( K_{Ss} \) and \( K_{Ox}\) are aggregate keys.</p>
+<p>Notice also that because the script resolves to an aggregate key \( K_s\) neither Alice nor Bob can claim the
+commitment \( C_s\) without the other party's key. If either party tries to cheat by editing the input, the script
+validation will fail.</p>
+<p>If either party tries to cheat by creating a new output, the offset will not validate correctly as the offset locks the
+output of the transaction.</p>
+<p>A base node validating the transaction will also not be able to tell this is an aggregate transaction as all keys are
+aggregated Schnorr signatures. But it will be able to validate that the script input is correctly signed, thus the
+output public key is correct and that the \( \so\) is correctly calculated, meaning that the commitment \( C_x\) is
+the correct UTXO for the transaction.</p>
+<p>To summarise, the information required for creating a multiparty UTXO is as follows:</p>
+<table><thead><tr><th align="left">Transaction input</th><th align="left">Symbols</th><th align="left">Knowledge</th></tr></thead><tbody>
+<tr><td align="left">commitment</td><td align="left">\( C_a = k_a \cdot G + v \cdot H \)</td><td align="left">Alice knows spend key and value</td></tr>
+<tr><td align="left">features</td><td align="left">\( F_a \)</td><td align="left">Public</td></tr>
+<tr><td align="left">script</td><td align="left">\( \alpha_a \)</td><td align="left">Public, can verify that \( \hash{\alpha_a} = \scripthash_a \)</td></tr>
+<tr><td align="left">script input</td><td align="left">\( \input_a \)</td><td align="left">Public</td></tr>
+<tr><td align="left">height</td><td align="left">\( h_a \)</td><td align="left">Public</td></tr>
+<tr><td align="left">script signature</td><td align="left">\( s_{Sa}, R_{Sa} \)</td><td align="left">Alice knows \( k_{Sa},\, r_{Sa} \)</td></tr>
+<tr><td align="left">offset public key</td><td align="left">\( K_{Oa} \)</td><td align="left">Not used in this transaction</td></tr>
+</tbody></table>
+<table><thead><tr><th align="left">Transaction output</th><th align="left">Symbols</th><th align="left">Knowledge</th></tr></thead><tbody>
+<tr><td align="left">commitment</td><td align="left">\( C_s = k_s \cdot G + v \cdot H \)</td><td align="left">Alice and Bob know the spend key and value</td></tr>
+<tr><td align="left">features</td><td align="left">\( F_s \)</td><td align="left">Public</td></tr>
+<tr><td align="left">script hash</td><td align="left">\( \scripthash_s \)</td><td align="left">Script is effectively public. Alice and Bob only knows their part of the  correct script input.</td></tr>
+<tr><td align="left">range proof</td><td align="left"></td><td align="left">Alice and Bob know opening parameters</td></tr>
+<tr><td align="left">offset public key</td><td align="left">\( K_{Os} = K_{OsA} + K_{OsB}\)</td><td align="left">Alice knows \( k_{OsA} \), Bob knows \( k_{OsB} \). Neither party knows \( k_{Os} \)</td></tr>
+</tbody></table>
+<p>When spending the multi-party input:</p>
+<table><thead><tr><th align="left">Transaction input</th><th align="left">Symbols</th><th align="left">Knowledge</th></tr></thead><tbody>
+<tr><td align="left">commitment</td><td align="left">\( C_s = k_s \cdot G + v \cdot H \)</td><td align="left">Alice and Bob know the spend key and value</td></tr>
+<tr><td align="left">features</td><td align="left">\( F_s \)</td><td align="left">Public</td></tr>
+<tr><td align="left">script</td><td align="left">\( \alpha_s \)</td><td align="left">Public, can verify that \( \hash{\alpha_d} = \scripthash_d \)</td></tr>
+<tr><td align="left">script input</td><td align="left">\( \input_s \)</td><td align="left">Public</td></tr>
+<tr><td align="left">height</td><td align="left">\( h_a \)</td><td align="left">Public</td></tr>
+<tr><td align="left">script signature</td><td align="left">\( s_{Sa} , R_{Sa} \)</td><td align="left">Alice knows \( k_{SaA},\, r_{SaA} \), Bob knows \( k_{SaB},\, r_{SaB} \).  Neither party knows \( k_{Sa}\)</td></tr>
+<tr><td align="left">offset public key</td><td align="left">\( K_{Os} \)</td><td align="left">As above, Alice and Bob each know part of the offset key</td></tr>
+</tbody></table>
+<h3 id="cut-through"><a class="header" href="#cut-through">Cut-through</a></h3>
+<p>A major issue with many Mimblewimble extension schemes is that miners are able to cut-through UTXOs if an output is spent
+in the same block it was created. This makes it so that the intervening UTXO never existed; along with any checks and
+balances carried in that UTXO. It's also impossible to prove without additional information that cut-through even occurred
+(though one may suspect, since the &quot;one&quot; transaction would contribute two kernels to the block).</p>
+<p>In particular, cut-through is devastating for an idea like TariScript which relies on conditions present in the UTXO being
+enforced.</p>
+<p>This is the reason for the presence of the script offset in the TariScript proposal. It links a UTXO to the input(s)
+that created it, and providing the script offset requires knowledge of keys that miners do not possess; thus they are unable
+to produce the necessary script offset when attempting to perform cut-through on a pair of transactions.</p>
+<p>Cut-through is still possible if the original owner participates. For example Alice, pays Bob, who pays Carol.
+Cut-through can happen only if Alice and Carol negotiate a new transaction.</p>
+<p>This will ensure that the original owner is happy with the spending the transaction to a new party, e.g. she has verified
+the spending conditions like a script.</p>
+<h3 id="script-lock-key-generation"><a class="header" href="#script-lock-key-generation">Script lock key generation</a></h3>
+<p>At face value, it looks like the burden for wallets has tripled, since each UTXO owner has to remember three private keys,
+the spend key, \( k_i \), the offset key \( k_{O} \) and the script key \( k_{S} \). In practice, the script key will
+often be a static key associated with the user's node or wallet. Even if it is not, the script and offset keys
+can be deterministically derived from the spend key. For example, \( k_{S} \) could be  \( \hash{ k_i \cat \alpha} \).</p>
+<h3 id="replay-attacks"><a class="header" href="#replay-attacks">Replay attacks</a></h3>
+<p>With a lot of these schemes it is possible to perform replay attacks. Look at the following scenario. We have Alice, Bob
+and Carol. Assume Bob is a merchant, and Alice buys some stuff from Bob. Later, Bob pays Carol with the output he got from Alice:</p>
+<p>$$
+C_a \Rightarrow  C_b \Rightarrow  C_c
+$$</p>
+<p>This is all fine and secure. But let's say at a later stage, Alice pays Bob again, but Alice uses the
+<em>exact same commitment, script and public keys</em> to pay Bob:</p>
+<p>$$
+C_a' \Rightarrow  C_b'
+$$</p>
+<p>After Bob ships his goods to Alice, Carol can just take the commitment \( C_b' \) because \( C_b == C_b' \) and she
+already has a transaction with all the correct signatures to claim \( C_b \).</p>
+<p>To ensure that a script is only valid once, we need to sign the block height that the original UTXO was mined at.
+So going back to the case of:</p>
+<p>$$
+C_b \Rightarrow  C_c
+$$</p>
+<p>Bob would have signed that \( C_b \) was mined at block \( h \). This means that when Carol tries to publish a transaction for:</p>
+<p>$$
+C_b' \Rightarrow  C_c'
+$$</p>
+<p>she would need to sign the input of the script with the block height \( h' \) was mined at. However, the signature she
+is trying to re-use is one for block <em>h</em> and her attack is foiled.</p>
+<h3 id="blockchain-bloat"><a class="header" href="#blockchain-bloat">Blockchain bloat</a></h3>
+<p>The most obvious drawback to TariScript is the effect it will have on blockchain size. UTXOs are substantially larger,
+with the addition of the script, script signature, and a public key to every output.</p>
+<p>These can eventually be pruned, but will increase storage and bandwidth requirements.</p>
+<p>Input size in a block will now be much bigger as each input was previously just a commitment and an output features.
+Each input now includes a script, input_data, the script signature and an extra public key. This could be compacted by
+just broadcasting input hashes along with the missing script input data and signature, instead of the full input in
+transaction messages, but this will still be larger than inputs are currently.</p>
+<p>Every header will also be bigger as it includes an extra blinding factor that will not be pruned away.</p>
+<p>The additional range proof validations and signature checks significantly hurt performance. Range proof checks are particularly
+expensive. To improve overall block validation, batch range proof validations should be employed to mitigate this expense.</p>
+<h3 id="fodder-for-chain-analysis"><a class="header" href="#fodder-for-chain-analysis">Fodder for chain analysis</a></h3>
+<p>Another potential drawback of TariScript is the additional information that is handed to entities wishing to perform chain
+analysis. Having scripts attached to outputs will often clearly mark the purpose of that UTXO. Users may wish to re-spend
+outputs into vanilla, default UTXOs in a mixing transaction to disassociate Tari funds from a particular script.</p>
+<h2 id="notation"><a class="header" href="#notation">Notation</a></h2>
+<p>Where possible, the &quot;usual&quot; notation is used to denote terms commonly found in cryptocurrency literature. New terms introduced by Tariscript are assigned greek lowercase letters in most cases.<br />
+The capital letter subscripts, <em>R</em> and <em>S</em> refer to a UTXO <em>receiver</em> and <em>script</em> respectively.</p>
+<table><thead><tr><th align="left">Symbol</th><th align="left">Definition</th></tr></thead><tbody>
+<tr><td align="left">\( \script_i \)</td><td align="left">An output script for output <em>i</em>, serialised to binary</td></tr>
+<tr><td align="left">\( h_i \)</td><td align="left">Block height that UTXO \(i\) was previously mined.</td></tr>
+<tr><td align="left">\(  \HU_i \)</td><td align="left">The hash of the full UTXO <em>i</em> <em>sans</em> range proof.</td></tr>
+<tr><td align="left">\( F_i \)</td><td align="left">Output features for UTXO <em>i</em>.</td></tr>
+<tr><td align="left">\( f_t \)</td><td align="left">transaction fee for transaction <em>t</em>.</td></tr>
+<tr><td align="left">\( m_t \)</td><td align="left">metadata for transaction <em>t</em>. Currently this includes the lock height.</td></tr>
+<tr><td align="left">\( \scripthash_i \)</td><td align="left">The 256-bit Blake2b hash of an output script, \( \script_i \)</td></tr>
+<tr><td align="left">\( k_{Oi}, K_{Oi} \)</td><td align="left">The private - public keypair for the UTXO offset key.</td></tr>
+<tr><td align="left">\( k_{Si}, K_{Si} \)</td><td align="left">The private - public keypair for the script key. The script, \( \script_i \) resolves to \( K_S \) after completing execution.</td></tr>
+<tr><td align="left">\( \rpc_i \)</td><td align="left">Auxilliary data committed to in the range proof. \( \rpc_i = \hash{ \scripthash_i \cat F_i \cat K_{Oi} } \)</td></tr>
+<tr><td align="left">\( \so_t \)</td><td align="left">The script offset for transaction <em>t</em>. \( \so_t = \sum_j{ k_{Sjt}} - \sum_j{k_{Ojt}\cdot\HU_i} \)</td></tr>
+<tr><td align="left">\( C_i \)</td><td align="left">A Pedersen commitment,  i.e. \( k_i \cdot{G} + v_i \cdot H \)</td></tr>
+<tr><td align="left">\( \hat{C}_i \)</td><td align="left">A modified Pedersen commitment, \( \hat{C}_i = (k_i + \rpc_i)\cdot{G} + v_i\cdot H  \)</td></tr>
+<tr><td align="left">\( \input_i \)</td><td align="left">The serialised input for script \( \script_i \)</td></tr>
+<tr><td align="left">\( s_{Si} \)</td><td align="left">A script signature for output \( i \). \( s_{Si} = r_{Si} + k_{Si}\hash{R_i \cat \alpha_i \cat \theta_i \cat h_i} \)</td></tr>
+</tbody></table>
+<h2 id="extensions"><a class="header" href="#extensions">Extensions</a></h2>
+<h3 id="covenants"><a class="header" href="#covenants">Covenants</a></h3>
+<p>Tari script places restrictions on <em>who</em> can spend UTXOs. It will also be useful for Tari digital asset applications to
+restrict <em>how</em> or <em>where</em> UTXOs may be spent in some cases. The general term for these sorts of restrictions are termed
+<em>covenants</em>. The <a href="https://handshake.org/files/handshake.txt">Handshake white paper</a> has a fairly good description of how covenants work.</p>
+<p>It is beyond the scope of this RFC, but it's anticipated that Tari Script would play a key role in the introduction of
+generalised covenant support into Tari.</p>
+<h3 id="lock-time-malleability"><a class="header" href="#lock-time-malleability">Lock-time malleability</a></h3>
+<p>The current Tari protocol has an issue with Transaction Output Maturity malleability. This output feature is enforced in
+the consensus rules, but it is actually possible for a miner to change the value without invalidating the transaction.</p>
+<p>With TariScript, output features are properly committed to in the transaction and verified as part of the script offset
+validation.</p>
+<h3 id="credits"><a class="header" href="#credits">Credits</a></h3>
+<p><a href="https://github.com/CjS77">@CjS77</a>
+<a href="https://github.com/philipr-za">@philipr-za</a> 
+<a href="https://github.com/SWvheerden">@SWvheerden</a></p>
+<p>Thanks to David Burkett for proposing a method to prevent cut-through and willingness to discuss ideas.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="BaseLayerExtensions.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="RFC-0202_TariScriptOpcodes.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="BaseLayerExtensions.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="RFC-0202_TariScriptOpcodes.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Initialize mermaid -->
+        <script src="theme/js/mermaid.min.js" type="text/javascript" charset="utf-8"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
